@@ -18,8 +18,14 @@ class ProductsGrid extends StatelessWidget {
             childAspectRatio: 9 / 12,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10),
-        itemBuilder: (ctx, i) => ChangeNotifierProvider(
-          create: (c) => products[i],
+        itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+          value: products[i], //different syntax if you're not using context
+          /*
+          When you're working with objects that are already exist use .value
+          Otherwise if you're creating the objects for
+           the first time use create: nor .value.
+           */
+          //create: (c) => products[i],
           child: ProductItem(
               /*products[i].id,
               products[i].title, products[i].imageUrl
