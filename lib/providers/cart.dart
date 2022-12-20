@@ -24,7 +24,7 @@ class Cart with ChangeNotifier {
   }
 
   int get itemCount {
-    return _items.length;
+    return _items == null ? 0 :_items.length;
   }
 
   void addItem(
