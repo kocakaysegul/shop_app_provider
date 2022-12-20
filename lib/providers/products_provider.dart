@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_app_provider/providers/product.dart';
 
 class ProductsProvider with ChangeNotifier{
@@ -71,13 +72,38 @@ class ProductsProvider with ChangeNotifier{
 
   ];
 
+
+  //var _showFavoritesOnly = false;
+
   List<Product> get items {
-    return [..._items];
+    /*if(_showFavoritesOnly){
+      return _items.where((element) => element.isFavorite).toList();
+    }
+     */
+    return [..._items]; //Bcz it is list
   }
+
+  List<Product> get favoriteItems {
+    return _items.where((element) => element.isFavorite).toList();
+  }
+
+  /*
+  void showFavoritesOnly(){
+    _showFavoritesOnly = true;
+    notifyListeners();
+  }
+  void showAll(){
+    _showFavoritesOnly = false;
+    notifyListeners();
+  }
+
+   */
 
   void addProduct(){
     notifyListeners();
   }
+
+
 
   Product findById(String id) {
     return _items.lastWhere((element) => element.id == id);
