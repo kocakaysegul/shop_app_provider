@@ -22,7 +22,6 @@ class ProductItem extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
                 arguments: productData.id);
-            
           },
           child: Image.network(
             productData.imageUrl,
@@ -51,7 +50,19 @@ class ProductItem extends StatelessWidget {
               icon: Icon(Icons.shopping_cart_rounded,
                   color: Theme.of(context).primaryColorDark),
               onPressed: () {
-                cartData.addItem(productData.id, productData.price, productData.title);
+                cartData.addItem(
+                    productData.id, productData.price, productData.title);
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Added item to the card'),
+                  duration: Duration(seconds: 2),
+                  action: SnackBarAction(
+                    label: 'UNDO',
+                    onPressed: (){
+                      cartData.removeSingleItem(productData.id);
+                    },
+                  ),
+                ));
               }),
         ),
       ),
