@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app_provider/providers/product.dart';
 
-class ProductsProvider with ChangeNotifier{
-  List<Product> _items =  [
+class ProductsProvider with ChangeNotifier {
+  List<Product> _items = [
     Product(
         id: 'p1',
         title: 'Red Shirt',
@@ -99,10 +99,16 @@ class ProductsProvider with ChangeNotifier{
 
    */
 
-  void addProduct(){
+  void addProduct(Product product) {
+    final newProduct = Product(id: DateTime.now().toString(),
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl,
+        isFavorite: product.isFavorite);
+    _items.add(newProduct);
     notifyListeners();
   }
-
 
 
   Product findById(String id) {
