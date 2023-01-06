@@ -12,7 +12,7 @@ class ProductsProvider with ChangeNotifier {
         description: 'A red shirt - it is pretty red!',
         price: 29.99,
         imageUrl:
-        'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=436&q=80',
+            'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=436&q=80',
         isFavorite: false),
     Product(
         id: 'p2',
@@ -20,7 +20,7 @@ class ProductsProvider with ChangeNotifier {
         description: 'A nice pair of trousers.',
         price: 59.99,
         imageUrl:
-        'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=405&q=80',
+            'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=405&q=80',
         isFavorite: false),
     Product(
         id: 'p3',
@@ -28,7 +28,7 @@ class ProductsProvider with ChangeNotifier {
         description: 'Warm and cozy - exactly what you need for the winter.',
         price: 19.99,
         imageUrl:
-        'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
+            'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
         isFavorite: false),
     Product(
         id: 'p4',
@@ -36,7 +36,7 @@ class ProductsProvider with ChangeNotifier {
         description: 'Prepare any meal you want.',
         price: 49.99,
         imageUrl:
-        'https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80',
+            'https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80',
         isFavorite: false),
     Product(
         id: 'p5',
@@ -44,7 +44,7 @@ class ProductsProvider with ChangeNotifier {
         description: 'A red shirt - it is pretty red!',
         price: 29.99,
         imageUrl:
-        'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=436&q=80',
+            'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=436&q=80',
         isFavorite: false),
     Product(
         id: 'p6',
@@ -52,7 +52,7 @@ class ProductsProvider with ChangeNotifier {
         description: 'A nice pair of trousers.',
         price: 59.99,
         imageUrl:
-        'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=405&q=80',
+            'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=405&q=80',
         isFavorite: false),
     Product(
         id: 'p7',
@@ -60,7 +60,7 @@ class ProductsProvider with ChangeNotifier {
         description: 'Warm and cozy - exactly what you need for the winter.',
         price: 19.99,
         imageUrl:
-        'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
+            'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
         isFavorite: false),
     Product(
         id: 'p8',
@@ -68,12 +68,9 @@ class ProductsProvider with ChangeNotifier {
         description: 'Prepare any meal you want.',
         price: 49.99,
         imageUrl:
-        'https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80',
+            'https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80',
         isFavorite: false),
-
-
   ];
-
 
   //var _showFavoritesOnly = false;
 
@@ -101,27 +98,37 @@ class ProductsProvider with ChangeNotifier {
 
    */
 
-  void addProduct(Product product) {
+  Future<void> addProduct(Product product) {
     //http request
-    final url = Uri.parse('https://shopapp-d683e-default-rtdb.firebaseio.com/products.json'); //updated version
-    http.post(url, body: json.encode({
-      'title' : product.title,
-      'description' : product.description,
-      'imageUrl' : product.imageUrl,
-      'price' : product.price,
-      'isFavorite' : product.isFavorite
-    }));
+    final url = Uri.parse(
+        'https://shopapp-d683e-default-rtdb.firebaseio.com/products.json'); //updated version
+    return http
+        .post(url,
+            body: json.encode({
+              'title': product.title,
+              'description': product.description,
+              'imageUrl': product.imageUrl,
+              'price': product.price,
+              'isFavorite': product.isFavorite
+            }))
 
-    final newProduct = Product(id: DateTime.now().toString(),
-        title: product.title,
-        description: product.description,
-        price: product.price,
-        imageUrl: product.imageUrl,
-        isFavorite: product.isFavorite);
-    _items.add(newProduct);
-    notifyListeners();
+        .then((response) {
+      final newProduct = Product(
+          id: json.decode(response.body)['name'],
+          //we can get the id that provided us by firebase
+          title: product.title,
+          description: product.description,
+          price: product.price,
+          imageUrl: product.imageUrl,
+          isFavorite: product.isFavorite);
+      _items.add(newProduct);
+      notifyListeners();
+    }).catchError((error){
+      print(error);
+      throw error;
+    });
+
   }
-
 
   Product findById(String id) {
     return _items.lastWhere((element) => element.id == id);
@@ -142,5 +149,4 @@ class ProductsProvider with ChangeNotifier {
     _items.removeWhere((prod) => prod.id == id);
     notifyListeners();
   }
-
 }
