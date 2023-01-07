@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app_provider/providers/products_provider.dart';
 import 'package:shop_app_provider/screens/cart_screen.dart';
 //import 'package:shop_app_provider/providers/products_provider.dart';
 import 'package:shop_app_provider/widgets/badge.dart';
@@ -16,6 +17,35 @@ class ProductsOverviewScreen extends StatefulWidget {
 
 class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   var showOnlyFavorites = false;
+  var _isInit = true;
+
+  @override
+  void initState() {
+    // Provider.of<ProductsProvider>(context).fetchAndSetProducts(); //WONT WORK
+    /* // This is one approach to solve this
+    Future.delayed(Duration.zero).then((_) {
+      Provider.of<ProductsProvider>(context).fetchAndSetProducts();
+    });
+
+     */
+    super.initState();
+  }
+
+
+  /*This method will run after the widget has been fully initialized but
+  before build ran for the first time. Unlike initstate it will run more
+  often multiple times and not just when this gets created.
+   */
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    if(_isInit){
+      Provider.of<ProductsProvider>(context).fetchAndSetProducts();
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
+
 
   @override
   Widget build(BuildContext context) {
