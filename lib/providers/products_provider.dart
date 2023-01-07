@@ -98,11 +98,12 @@ class ProductsProvider with ChangeNotifier {
 
    */
 
-  Future<void> addProduct(Product product) {
+  /*
+  Future<void> addProduct(Product product) async{
     //http request
     final url = Uri.parse(
         'https://shopapp-d683e-default-rtdb.firebaseio.com/products.json'); //updated version
-    return http
+     await http
         .post(url,
             body: json.encode({
               'title': product.title,
@@ -128,6 +129,38 @@ class ProductsProvider with ChangeNotifier {
       throw error;
     });
 
+  }
+   */
+
+  Future<void> addProduct(Product product) async {
+    final url = Uri.parse(
+        'https://shopapp-d683e-default-rtdb.firebaseio.com/products.json');
+    try {
+      final response = await http.post(
+        url,
+        body: json.encode({
+          'title': product.title,
+          'description': product.description,
+          'imageUrl': product.imageUrl,
+          'price': product.price,
+          'isFavorite': product.isFavorite,
+        }),
+      );
+      final newProduct = Product(
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl,
+        id: json.decode(response.body)['name'],
+        isFavorite: product.isFavorite,
+      );
+      _items.add(newProduct);
+      // _items.insert(0, newProduct); // at the start of the list
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      throw error;
+    }
   }
 
   Product findById(String id) {
