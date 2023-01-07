@@ -6,6 +6,7 @@ import 'dart:convert';
 
 class ProductsProvider with ChangeNotifier {
   List<Product> _items = [
+    /*
     Product(
         id: 'p1',
         title: 'Red Shirt',
@@ -70,6 +71,7 @@ class ProductsProvider with ChangeNotifier {
         imageUrl:
             'https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80',
         isFavorite: false),
+     */
   ];
 
   //var _showFavoritesOnly = false;
@@ -132,23 +134,36 @@ class ProductsProvider with ChangeNotifier {
   }
    */
 
-  Future <void> fetchAndSetProducts() async {
+  Future<void> fetchAndSetProducts() async {
     final url = Uri.parse(
         'https://shopapp-d683e-default-rtdb.firebaseio.com/products.json');
     try {
       final response = await http.get(url);
-      print(json.decode(response.body));
-    }catch(error){
-      throw(error);
+      //print(json.decode(response.body));
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final List<Product> loadedProducts = [];
+      extractedData.forEach((prodId, prodData) {
+        loadedProducts.add(Product(
+            id: prodId,
+            title: prodData['title'],
+            description: prodData['description'],
+            price: prodData['price'],
+            imageUrl: prodData['imageUrl'],
+            isFavorite: prodData['isFavorite']));
+      });
+      _items = loadedProducts;
+      notifyListeners();
+    } catch (error) {
+      throw (error);
     }
   }
-
 
   Future<void> addProduct(Product product) async {
     final url = Uri.parse(
         'https://shopapp-d683e-default-rtdb.firebaseio.com/products.json');
     try {
-      final response = await http.post( //to post to data in firebase
+      final response = await http.post(
+        //to post to data in firebase
         url,
         body: json.encode({
           'title': product.title,
