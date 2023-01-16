@@ -9,7 +9,7 @@ class Auth with ChangeNotifier {
   late String _userId;
 
   bool get isAuth {
-    return token != '';
+    return token != null;
   }
 
   String? get token {
@@ -66,3 +66,4 @@ class Auth with ChangeNotifier {
     return _authenticate(email, password, 'verifyPassword');
   }
 }
+
